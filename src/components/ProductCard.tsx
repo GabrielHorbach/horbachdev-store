@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import Image, { StaticImageData } from "next/image";
+import Link from "next/link";
+import { slugify } from "@/helpers/slugify";
 
 interface ProductCardProps {
   image: StaticImageData;
@@ -15,8 +17,10 @@ const ProductCard = ({
   price,
   originalPrice,
 }: ProductCardProps) => {
+  const href = `/product/${slugify(name)}`;
+
   return (
-    <div className="product-card group cursor-pointer">
+    <Link href={href} className="product-card group cursor-pointer block">
       <div className="relative overflow-hidden rounded-xl mb-4">
         <Image
           src={image}
@@ -46,7 +50,7 @@ const ProductCard = ({
           )}
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
